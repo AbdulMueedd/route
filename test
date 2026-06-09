@@ -484,9 +484,7 @@
     .fleet-row {
       flex-direction: column;
       align-items: stretch;
-    }
-
-    .fleet-row .field input {
+    }    .fleet-row .field input {
       width: 100%;
     }
 
