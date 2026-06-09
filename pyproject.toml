@@ -1,2 +1,19 @@
-[tool.vercel]
+[build-system]
+requires = ["hatchling>=1.13.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "route"
+version = "0.1.0"
+description = "VRP Route Optimizer Flask app"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask>=2.3.0,<3.0.0",
+    "Flask-Cors>=4.0.0,<5.0.0",
+    "requests>=2.31.0,<3.0.0",
+    "ortools>=9.7.0,<10.0.0",
+    "gunicorn>=21.2.0,<22.0.0",
+]
+
+[tool.vercel] 
 entrypoint = "google_route:app"
