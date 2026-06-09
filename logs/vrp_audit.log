@@ -269,3 +269,12 @@
 2026-06-09 13:51:07 | INFO     | Solution: 1 trucks used | 76.009 total miles
 2026-06-09 13:51:07 | INFO     | Request 20260609_135046_528466 | success | 1 routes | 76.009 miles
 2026-06-09 13:51:07 | INFO     | 127.0.0.1 - - [09/Jun/2026 13:51:07] "POST /solve HTTP/1.1" 200 -
+2026-06-09 14:31:30 | INFO     |  * Detected change in 'C:\\Users\\amueed\\OneDrive - The Cary Company\\Desktop\\route\\google_route.py', reloading
+2026-06-09 14:31:30 | INFO     |  * Restarting with stat
+2026-06-09 14:31:31 | INFO     | ============================================================
+2026-06-09 14:31:31 | INFO     | VRP Route Optimizer starting
+2026-06-09 14:31:31 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 14:31:31 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 14:31:31 | INFO     | ============================================================
+2026-06-09 14:31:31 | WARNING  |  * Debugger is active!
+2026-06-09 14:31:31 | INFO     |  * Debugger PIN: 279-355-421

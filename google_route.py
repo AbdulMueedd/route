@@ -565,7 +565,7 @@ def validate_stop(stop: dict, label: str) -> None:
 
 @app.route('/')
 def index():
-    """Serve the main frontend HTML file."""
+    """Serve the main frontend HTML file.""" 
     return send_from_directory('static', 'index.html')
 
 

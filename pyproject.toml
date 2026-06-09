@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling>=1.13.0"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=65.5.0", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "route"
@@ -15,5 +15,8 @@ dependencies = [
     "gunicorn>=21.2.0,<22.0.0",
 ]
 
-[tool.vercel] 
+[tool.setuptools]
+py-modules = ["google_route"]
+
+[tool.vercel]
 entrypoint = "google_route:app"
