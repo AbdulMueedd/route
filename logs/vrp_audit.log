@@ -278,3 +278,69 @@
 2026-06-09 14:31:31 | INFO     | ============================================================
 2026-06-09 14:31:31 | WARNING  |  * Debugger is active!
 2026-06-09 14:31:31 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 14:49:55 | INFO     | ============================================================
+2026-06-09 14:49:55 | INFO     | VRP Route Optimizer starting
+2026-06-09 14:49:55 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 14:49:55 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 14:49:55 | INFO     | ============================================================
+2026-06-09 14:49:55 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 14:49:55 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 14:49:55 | INFO     |  * Restarting with stat
+2026-06-09 14:49:56 | INFO     | ============================================================
+2026-06-09 14:49:56 | INFO     | VRP Route Optimizer starting
+2026-06-09 14:49:56 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 14:49:56 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 14:49:56 | INFO     | ============================================================
+2026-06-09 14:49:56 | WARNING  |  * Debugger is active!
+2026-06-09 14:49:56 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 14:50:04 | INFO     | === /solve request 20260609_145004_430326 | method=GET | ip=127.0.0.1 ===
+2026-06-09 14:50:04 | INFO     | Request 20260609_145004_430326 | GET demo problem
+2026-06-09 14:50:04 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 14:50:04 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 14:50:04 | INFO     | OSRM matrix received | 0.30s
+2026-06-09 14:50:04 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 14:50:24 | INFO     | Solver finished | 20.33s | objective=72.726 miles
+2026-06-09 14:50:24 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 14:50:24 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 14:50:24 | INFO     | Request 20260609_145004_430326 | success | 1 routes | 72.726 miles
+2026-06-09 14:50:24 | INFO     | 127.0.0.1 - - [09/Jun/2026 14:50:24] "GET /solve HTTP/1.1" 200 -
+2026-06-09 14:50:46 | INFO     | ============================================================
+2026-06-09 14:50:46 | INFO     | VRP Route Optimizer starting
+2026-06-09 14:50:46 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 14:50:46 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 14:50:46 | INFO     | ============================================================
+2026-06-09 14:50:46 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 14:50:46 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 14:50:46 | INFO     |  * Restarting with stat
+2026-06-09 14:50:47 | INFO     | ============================================================
+2026-06-09 14:50:47 | INFO     | VRP Route Optimizer starting
+2026-06-09 14:50:47 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 14:50:47 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 14:50:47 | INFO     | ============================================================
+2026-06-09 14:50:47 | WARNING  |  * Debugger is active!
+2026-06-09 14:50:47 | INFO     |  * Debugger PIN: 269-906-316
+2026-06-09 14:51:34 | INFO     | === /solve request 20260609_145134_198972 | method=GET | ip=127.0.0.1 ===
+2026-06-09 14:51:34 | INFO     | Request 20260609_145134_198972 | GET demo problem
+2026-06-09 14:51:34 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 14:51:34 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 14:51:34 | INFO     | OSRM matrix received | 0.26s
+2026-06-09 14:51:34 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 14:51:54 | INFO     | Solver finished | 20.27s | objective=72.726 miles
+2026-06-09 14:51:54 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 14:51:54 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 14:51:54 | INFO     | Request 20260609_145134_198972 | success | 1 routes | 72.726 miles
+2026-06-09 14:51:54 | INFO     | 127.0.0.1 - - [09/Jun/2026 14:51:54] "GET /solve HTTP/1.1" 200 -
+2026-06-09 14:52:07 | INFO     | 127.0.0.1 - - [09/Jun/2026 14:52:07] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 14:52:08 | INFO     | === /solve request 20260609_145208_007390 | method=POST | ip=127.0.0.1 ===
+2026-06-09 14:52:08 | INFO     | Request 20260609_145208_007390 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 14:52:08 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 14:52:08 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 14:52:08 | INFO     | OSRM matrix received | 0.25s
+2026-06-09 14:52:08 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 14:52:28 | INFO     | Solver finished | 20.25s | objective=76.009 miles
+2026-06-09 14:52:28 | INFO     |   Truck-2 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 14:52:28 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 14:52:28 | INFO     | Request 20260609_145208_007390 | success | 1 routes | 76.009 miles
+2026-06-09 14:52:28 | INFO     | 127.0.0.1 - - [09/Jun/2026 14:52:28] "POST /solve HTTP/1.1" 200 -
