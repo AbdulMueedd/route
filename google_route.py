@@ -1,5 +1,5 @@
 """
-VRP Route Optimizer — Flask Backend
+VRP Route Optimizer - Flask Backend
 The Cary Company
 
 Solves a Vehicle Routing Problem (VRP) with:
@@ -19,8 +19,15 @@ import time as time_module
 from datetime import datetime
 
 import requests
-from ortools.constraint_solver import routing_enums_pb2
-from ortools.constraint_solver import pywrapcp
+try:
+    from ortools.constraint_solver import routing_enums_pb2
+    from ortools.constraint_solver import pywrapcp
+    ORTOOLS_AVAILABLE = True
+except ImportError:
+    routing_enums_pb2 = None
+    pywrapcp = None
+    ORTOOLS_AVAILABLE = False
+
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
@@ -31,19 +38,22 @@ app = Flask(__name__, static_folder='static')
 CORS(app)
 
 # ── Logging setup ──────────────────────────────────────────────────────────────
-# Writes audit logs to both the console and a rotating log file.
-# Every request, solve attempt, OSRM call, and error is recorded with a timestamp.
+# Writes audit logs to the console; file logging is optional for local runs.
+# Serverless environments like Vercel may not allow writing to the project root.
 
-os.makedirs('logs', exist_ok=True)
+handlers = [logging.StreamHandler()]
+try:
+    os.makedirs('logs', exist_ok=True)
+    handlers.append(logging.FileHandler('logs/vrp_audit.log', encoding='utf-8'))
+except OSError:
+    handlers = [logging.StreamHandler()]
+    print("WARNING: Could not create logs directory; logging to console only.")
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s | %(levelname)-8s | %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.StreamHandler(),                                    # console
-        logging.FileHandler('logs/vrp_audit.log', encoding='utf-8'),  # file
-    ]
+    handlers=handlers,
 )
 log = logging.getLogger('vrp')
 
@@ -62,7 +72,7 @@ def after_request(response):
 KM_TO_MILES = 0.621371  # conversion factor applied to all OSRM distances
 
 # Trailer type definitions.
-# The truck itself is always the same — the trailer determines:
+# The truck itself is always the same - the trailer determines:
 #   capacity:      max cargo units the trailer can hold at any one time
 #   allowed_zones: which delivery zone types this trailer is permitted to enter
 #   description:   human-readable explanation shown in the UI
@@ -76,19 +86,19 @@ TRAILER_DEFS = {
     "53ft": {
         "capacity":      26,
         "allowed_zones": ["residential", "commercial", "industrial", "airport"],
-        "description":   "53\' dry van — 26 pallets, no zone restrictions",
+        "description":   "53\' dry van - 26 pallets, no zone restrictions",
         "color":         "#1f3f8f",
     },
     "liftgate": {
         "capacity":      12,
         "allowed_zones": ["residential", "commercial", "industrial", "airport"],
-        "description":   "Liftgate trailer — 12 pallets, access anywhere, required for stops with no loading dock",
+        "description":   "Liftgate trailer - 12 pallets, access anywhere, required for stops with no loading dock",
         "color":         "#0e7c4a",
     },
     "hazmat": {
         "capacity":      12,
         "allowed_zones": ["industrial"],
-        "description":   "Hazmat liftgate — 12 pallets, industrial zones only",
+        "description":   "Hazmat liftgate - 12 pallets, industrial zones only",
         "color":         "#a0280f",
     },
 }
@@ -123,14 +133,14 @@ def get_matrices_from_osrm(locs: list[tuple[float, float]]) -> tuple[list, list]
         data = r.json()
     except requests.exceptions.Timeout:
         log.error("OSRM request timed out after 15s")
-        raise Exception("OSRM request timed out — check your internet connection")
+        raise Exception("OSRM request timed out - check your internet connection")
     except requests.exceptions.RequestException as e:
         log.error("OSRM network error: %s", e)
         raise Exception(f"Could not reach OSRM: {e}")
 
     if data.get("code") != "Ok":
         log.error("OSRM returned error code: %s", data.get("code"))
-        raise Exception(f"OSRM error: {data.get('code')} — check that all coordinates are valid")
+        raise Exception(f"OSRM error: {data.get('code')} - check that all coordinates are valid")
 
     elapsed = time_module.time() - t0
     log.info("OSRM matrix received | %.2fs", elapsed)
@@ -153,7 +163,7 @@ def get_route_geometry(coords: list[tuple[float, float]]) -> list:
     Calls OSRM's route endpoint to get a road-following polyline for a single
     ordered sequence of coordinates (one truck's full route).
 
-    This is separate from the matrix call — the matrix gives us pairwise costs
+    This is separate from the matrix call - the matrix gives us pairwise costs
     for the solver, while this gives us the actual GPS path to draw on the map.
 
     Returns:
@@ -178,7 +188,7 @@ def get_route_geometry(coords: list[tuple[float, float]]) -> list:
         log.warning("OSRM geometry returned no route: code=%s", data.get("code"))
         return []
 
-    # GeoJSON uses [lon, lat] order — Leaflet.js needs [lat, lon]
+    # GeoJSON uses [lon, lat] order - Leaflet.js needs [lat, lon]
     return [[p[1], p[0]] for p in data["routes"][0]["geometry"]["coordinates"]]
 
 
@@ -198,8 +208,11 @@ def run_solver(
     """
     Runs the OR-Tools VRP solver and returns optimized routes.
 
+    If OR-Tools is unavailable in the runtime environment, the function raises
+    a clear error instead of failing during module import.
+
     HOW THE CAPACITY MODEL WORKS
-    ─────────────────────────────
+    -----------------------------
     We use TWO separate capacity dimensions rather than one combined load dimension.
     This correctly handles the delivery-first, pickup-second workflow:
 
@@ -207,42 +220,50 @@ def run_solver(
         Each delivery stop has a positive demand equal to the cargo being dropped off.
         The cumulative sum of deliveries on a route must not exceed trailer capacity.
         start_cumul_to_zero=True means it starts at 0 and grows as deliveries are assigned.
-        OR-Tools enforces: sum(deliveries on route) ≤ capacity.
+        OR-Tools enforces: sum(deliveries on route) <= capacity.
 
       PickupLoad dimension
         Each pickup stop has a positive demand equal to the cargo being collected.
         The cumulative sum of pickups on a route must not exceed trailer capacity.
         start_cumul_to_zero=True means it starts at 0 and grows as pickups are assigned.
-        OR-Tools enforces: sum(pickups on route) ≤ capacity.
+        OR-Tools enforces: sum(pickups on route) <= capacity.
 
     Since deliveries and pickups are separated in time (deliveries always run first,
     enforced via time window constraints), the trailer space is fully reused:
-      - Truck leaves depot loaded with delivery cargo  → at most `capacity` units
-      - Truck unloads at delivery stops                → space frees up
-      - Truck loads pickup cargo                       → at most `capacity` units
+      - Truck leaves depot loaded with delivery cargo  -> at most `capacity` units
+      - Truck unloads at delivery stops                -> space frees up
+      - Truck loads pickup cargo                       -> at most `capacity` units
       - Truck returns to depot with pickup cargo
 
     HOW THE TIME MODEL WORKS
-    ─────────────────────────
+    -------------------------
     A single Time dimension tracks when each truck arrives at each stop.
     service time at each stop is included in the transit callback so the solver
     accounts for unload/load time before moving to the next stop.
 
     Pickup stops are given a time window that starts no earlier than the minimum
-    time to complete one delivery — this enforces delivery-before-pickup ordering.
+    time to complete one delivery -- this enforces delivery-before-pickup ordering.
 
     HOW ZONE RESTRICTIONS WORK
-    ───────────────────────────
+    ---------------------------
     For each stop, we check if the assigned trailer's allowed_zones includes
     that stop's zone type. If not, we call VehicleVar.RemoveValue(v) to hard-forbid
     that truck from visiting that node.
 
     HOW PRIORITY WORKS
-    ───────────────────
+    ------------------
     Priority 2 (high) and 3 (urgent) stops get a soft upper bound on their arrival time.
     If the solver visits them later than the soft deadline, it pays a penalty proportional
     to priority. This biases the solver toward visiting important stops early.
+    """
 
+    if not ORTOOLS_AVAILABLE:
+        raise RuntimeError(
+            "The OR-Tools dependency is unavailable. "
+            "Install ortools or deploy to a runtime that supports it."
+        ) 
+
+    """
     Args:
         loc_names:    Location names, index 0 = depot
         loc_coords:   (lat, lon) tuples, same order as loc_names
@@ -332,7 +353,7 @@ def run_solver(
         i = mgr.IndexToNode(fi)
         j = mgr.IndexToNode(ti)
         # Include service time at i before travelling to j
-        # Round to int — OR-Tools dimensions require integers
+        # Round to int - OR-Tools dimensions require integers
         return int(round(time_m[i][j] + loc_svc[i]))
 
     time_idx = mdl.RegisterTransitCallback(time_cb)
@@ -397,7 +418,7 @@ def run_solver(
     # ── Priority soft time bounds ──────────────────────────────────
     # High/urgent priority stops get a soft deadline: if the solver arrives
     # after (window_start + 60 min), it pays a penalty per minute late.
-    # This doesn't hard-forbid late arrivals — it just makes them expensive,
+    # This doesn't hard-forbid late arrivals - it just makes them expensive,
     # so the solver schedules priority stops earlier when possible.
     for node, priority in enumerate(priorities):
         if priority > 1 and node > 0:
@@ -411,7 +432,7 @@ def run_solver(
     # ── Zone restrictions ──────────────────────────────────────────
     # Hard-forbid each vehicle from visiting stops in zones it cannot access.
     # VehicleVar(node).RemoveValue(v) tells OR-Tools that vehicle v can never
-    # be assigned to serve node — the solver will never consider this assignment.
+    # be assigned to serve node - the solver will never consider this assignment.
     for node in range(1, n_locs):
         for v in range(n_vehicles):
             if node not in allowed_stops[v]:
@@ -565,8 +586,17 @@ def validate_stop(stop: dict, label: str) -> None:
 
 @app.route('/')
 def index():
-    """Serve the main frontend HTML file.""" 
+    """Serve the main frontend HTML file."""
     return send_from_directory('static', 'index.html')
+
+
+@app.route('/_health', methods=['GET'])
+def health_check():
+    """Health check endpoint for Vercel and service monitoring."""
+    return jsonify({
+        "status": "ok",
+        "ortools_available": ORTOOLS_AVAILABLE,
+    })
 
 
 @app.route('/trailer_types', methods=['GET'])
@@ -581,13 +611,13 @@ def solve_route():
     Main optimization endpoint.
 
     POST body (JSON):
-        depot:                 str   — depot location name (already geocoded by frontend)
+        depot:                 str   - depot location name (already geocoded by frontend)
         depot_coords:          [lat, lon]
         deliveries:            list of stop objects (name, coords, demand, zone, priority)
         pickups:               list of stop objects (name, coords, demand, zone, priority)
         fleet:                 list of {"trailer": type, "id": str}
-        delivery_service_time: float — minutes spent unloading at each delivery stop
-        pickup_service_time:   float — minutes spent loading at each pickup stop
+        delivery_service_time: float - minutes spent unloading at each delivery stop
+        pickup_service_time:   float - minutes spent loading at each pickup stop
 
     GET: runs a hardcoded demo problem (useful for testing the connection).
 
@@ -664,7 +694,7 @@ def solve_route():
 
         else:
             # ── GET: demo problem ──────────────────────────────────
-            # Realistic pallet counts — 53ft trailer holds 26 pallets max.
+            # Realistic pallet counts - 53ft trailer holds 26 pallets max.
             # 2 deliveries (10+8 pallets) and 2 pickups (6+12 pallets).
             log.info("Request %s | GET demo problem", request_id)
             loc_names   = ["Depot (Addison, IL)", "O'Hare Airport", "Willis Tower", "Navy Pier", "Schaumburg"]
@@ -697,12 +727,12 @@ def solve_route():
         return jsonify(result)
 
     except ValueError as e:
-        # Input validation errors — tell the user what to fix
+        # Input validation errors - tell the user what to fix
         log.warning("Request %s | validation error: %s", request_id, e)
         return jsonify({"error": str(e)}), 400
 
     except Exception as e:
-        # Unexpected errors — log full traceback, return safe message
+        # Unexpected errors - log full traceback, return safe message
         log.error("Request %s | unexpected error: %s\n%s", request_id, e, traceback.format_exc())
         return jsonify({"error": f"Internal server error: {e}"}), 500
 
@@ -712,7 +742,7 @@ def geometry():
     """
     Fetches road-following polylines for a set of already-solved routes.
 
-    Called after /solve returns — takes the solved node sequences and
+    Called after /solve returns - takes the solved node sequences and
     fetches the actual GPS paths from OSRM so Leaflet can draw them on the map.
 
     POST body:
