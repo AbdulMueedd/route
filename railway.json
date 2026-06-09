@@ -1,0 +1,6 @@
+{
+  "build": {
+    "dockerfilePath": "Dockerfile"
+  },
+  "start": "gunicorn --bind 0.0.0.0:$PORT google_route:app --workers 2 --threads 4"
+}

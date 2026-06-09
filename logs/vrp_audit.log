@@ -1,0 +1,271 @@
+2026-06-09 09:41:14 | INFO     | ============================================================
+2026-06-09 09:41:14 | INFO     | VRP Route Optimizer starting
+2026-06-09 09:41:14 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 09:41:14 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 09:41:14 | INFO     | ============================================================
+2026-06-09 09:41:14 | WARNING  |  * Debugger is active!
+2026-06-09 09:41:14 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 09:41:20 | INFO     | ============================================================
+2026-06-09 09:41:20 | INFO     | VRP Route Optimizer starting
+2026-06-09 09:41:20 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 09:41:20 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 09:41:20 | INFO     | ============================================================
+2026-06-09 09:41:20 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 09:41:20 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 09:41:20 | INFO     |  * Restarting with stat
+2026-06-09 09:41:21 | INFO     | ============================================================
+2026-06-09 09:41:21 | INFO     | VRP Route Optimizer starting
+2026-06-09 09:41:21 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 09:41:21 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 09:41:21 | INFO     | ============================================================
+2026-06-09 09:41:21 | WARNING  |  * Debugger is active!
+2026-06-09 09:41:21 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 09:41:37 | INFO     | === /solve request 20260609_094137_843141 | method=GET | ip=127.0.0.1 ===
+2026-06-09 09:41:37 | INFO     | Request 20260609_094137_843141 | GET demo problem
+2026-06-09 09:41:37 | INFO     | Solver starting | 5 locations | 4 vehicles | 2 deliveries | 2 pickups
+2026-06-09 09:41:37 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 09:41:38 | INFO     | OSRM matrix received | 0.71s
+2026-06-09 09:41:38 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 09:41:58 | INFO     | Solver finished | 20.73s | objective=86.954 miles
+2026-06-09 09:41:58 | INFO     |   Truck-1 (small) | departs 50.0 units | picks up 50.0 units | 2 stops
+2026-06-09 09:41:58 | INFO     |   Truck-2 (small) | departs 50.0 units | picks up 50.0 units | 2 stops
+2026-06-09 09:41:58 | INFO     | Solution: 2 trucks used | 86.954 total miles
+2026-06-09 09:41:58 | INFO     | Request 20260609_094137_843141 | success | 2 routes | 86.954 miles
+2026-06-09 09:41:58 | INFO     | 127.0.0.1 - - [09/Jun/2026 09:41:58] "GET /solve HTTP/1.1" 200 -
+2026-06-09 09:42:02 | INFO     | 127.0.0.1 - - [09/Jun/2026 09:42:02] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 09:42:02 | INFO     | === /solve request 20260609_094202_627718 | method=POST | ip=127.0.0.1 ===
+2026-06-09 09:42:02 | INFO     | Request 20260609_094202_627718 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 09:42:02 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 09:42:02 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 09:42:02 | INFO     | OSRM matrix received | 0.23s
+2026-06-09 09:42:02 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 09:42:22 | INFO     | Solver finished | 20.23s | objective=76.009 miles
+2026-06-09 09:42:22 | INFO     |   Truck-2 (standard) | departs 80.0 units | picks up 60.0 units | 4 stops
+2026-06-09 09:42:22 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 09:42:22 | INFO     | Request 20260609_094202_627718 | success | 1 routes | 76.009 miles
+2026-06-09 09:42:22 | INFO     | 127.0.0.1 - - [09/Jun/2026 09:42:22] "POST /solve HTTP/1.1" 200 -
+2026-06-09 10:47:22 | INFO     | === /solve request 20260609_104722_106823 | method=GET | ip=127.0.0.1 ===
+2026-06-09 10:47:22 | INFO     | Request 20260609_104722_106823 | GET demo problem
+2026-06-09 10:47:22 | INFO     | Solver starting | 5 locations | 4 vehicles | 2 deliveries | 2 pickups
+2026-06-09 10:47:22 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 10:47:22 | INFO     | OSRM matrix received | 0.30s
+2026-06-09 10:47:22 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 10:47:28 | INFO     | 127.0.0.1 - - [09/Jun/2026 10:47:28] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 10:47:28 | INFO     | === /solve request 20260609_104728_738797 | method=POST | ip=127.0.0.1 ===
+2026-06-09 10:47:28 | INFO     | Request 20260609_104728_738797 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 10:47:28 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 10:47:28 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 10:47:29 | INFO     | OSRM matrix received | 0.39s
+2026-06-09 10:47:29 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 10:47:42 | INFO     | Solver finished | 20.33s | objective=86.954 miles
+2026-06-09 10:47:42 | INFO     |   Truck-1 (small) | departs 50.0 units | picks up 50.0 units | 2 stops
+2026-06-09 10:47:42 | INFO     |   Truck-2 (small) | departs 50.0 units | picks up 50.0 units | 2 stops
+2026-06-09 10:47:42 | INFO     | Solution: 2 trucks used | 86.954 total miles
+2026-06-09 10:47:42 | INFO     | Request 20260609_104722_106823 | success | 2 routes | 86.954 miles
+2026-06-09 10:47:42 | INFO     | 127.0.0.1 - - [09/Jun/2026 10:47:42] "GET /solve HTTP/1.1" 200 -
+2026-06-09 10:47:49 | INFO     | Solver finished | 20.48s | objective=76.009 miles
+2026-06-09 10:47:49 | INFO     |   Truck-2 (standard) | departs 80.0 units | picks up 60.0 units | 4 stops
+2026-06-09 10:47:49 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 10:47:49 | INFO     | Request 20260609_104728_738797 | success | 1 routes | 76.009 miles
+2026-06-09 10:47:49 | INFO     | 127.0.0.1 - - [09/Jun/2026 10:47:49] "POST /solve HTTP/1.1" 200 -
+2026-06-09 11:20:57 | INFO     | ============================================================
+2026-06-09 11:20:57 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:20:57 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:20:57 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:20:57 | INFO     | ============================================================
+2026-06-09 11:20:57 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 11:20:57 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 11:20:57 | INFO     |  * Restarting with stat
+2026-06-09 11:20:58 | INFO     | ============================================================
+2026-06-09 11:20:58 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:20:58 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:20:58 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:20:58 | INFO     | ============================================================
+2026-06-09 11:20:58 | WARNING  |  * Debugger is active!
+2026-06-09 11:20:58 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 11:21:16 | INFO     | === /solve request 20260609_112116_296227 | method=GET | ip=127.0.0.1 ===
+2026-06-09 11:21:16 | INFO     | Request 20260609_112116_296227 | GET demo problem
+2026-06-09 11:21:16 | INFO     | Solver starting | 5 locations | 4 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:21:16 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 11:21:16 | INFO     | OSRM matrix received | 0.28s
+2026-06-09 11:21:16 | WARNING  | Request 20260609_112116_296227 | validation error: Unknown trailer type 'small'. Valid types: ['53ft', 'liftgate', 'hazmat']
+2026-06-09 11:21:16 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:21:16] "[31m[1mGET /solve HTTP/1.1[0m" 400 -
+2026-06-09 11:21:22 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:21:22] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 11:21:23 | INFO     | === /solve request 20260609_112123_149418 | method=POST | ip=127.0.0.1 ===
+2026-06-09 11:21:23 | INFO     | Request 20260609_112123_149418 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 11:21:23 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:21:23 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 11:21:23 | INFO     | OSRM matrix received | 0.25s
+2026-06-09 11:21:23 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 11:21:43 | INFO     | Solver finished | 20.26s | objective=76.009 miles
+2026-06-09 11:21:43 | INFO     |   Truck-2 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 11:21:43 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 11:21:43 | INFO     | Request 20260609_112123_149418 | success | 1 routes | 76.009 miles
+2026-06-09 11:21:43 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:21:43] "POST /solve HTTP/1.1" 200 -
+2026-06-09 11:23:09 | INFO     | ============================================================
+2026-06-09 11:23:09 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:23:09 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:23:09 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:23:09 | INFO     | ============================================================
+2026-06-09 11:23:09 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 11:23:09 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 11:23:09 | INFO     |  * Restarting with stat
+2026-06-09 11:23:09 | INFO     | ============================================================
+2026-06-09 11:23:09 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:23:09 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:23:09 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:23:09 | INFO     | ============================================================
+2026-06-09 11:23:09 | WARNING  |  * Debugger is active!
+2026-06-09 11:23:09 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 11:23:29 | INFO     | === /solve request 20260609_112329_997159 | method=GET | ip=127.0.0.1 ===
+2026-06-09 11:23:29 | INFO     | Request 20260609_112329_997159 | GET demo problem
+2026-06-09 11:23:29 | INFO     | Solver starting | 5 locations | 4 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:23:29 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 11:23:30 | INFO     | OSRM matrix received | 0.25s
+2026-06-09 11:23:30 | WARNING  | Request 20260609_112329_997159 | validation error: Unknown trailer type 'small'. Valid types: ['53ft', 'liftgate', 'hazmat']
+2026-06-09 11:23:30 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:23:30] "[31m[1mGET /solve HTTP/1.1[0m" 400 -
+2026-06-09 11:23:56 | INFO     | === /solve request 20260609_112356_078170 | method=GET | ip=127.0.0.1 ===
+2026-06-09 11:23:56 | INFO     | Request 20260609_112356_078170 | GET demo problem
+2026-06-09 11:23:56 | INFO     | Solver starting | 5 locations | 4 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:23:56 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 11:23:56 | INFO     | OSRM matrix received | 0.25s
+2026-06-09 11:23:56 | WARNING  | Request 20260609_112356_078170 | validation error: Unknown trailer type 'small'. Valid types: ['53ft', 'liftgate', 'hazmat']
+2026-06-09 11:23:56 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:23:56] "[31m[1mGET /solve HTTP/1.1[0m" 400 -
+2026-06-09 11:23:56 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:23:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-06-09 11:25:32 | INFO     |  * Detected change in 'C:\\Users\\amueed\\OneDrive - The Cary Company\\Desktop\\route\\google_route.py', reloading
+2026-06-09 11:25:32 | INFO     |  * Restarting with stat
+2026-06-09 11:25:33 | INFO     | ============================================================
+2026-06-09 11:25:33 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:25:33 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:25:33 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:25:33 | INFO     | ============================================================
+2026-06-09 11:25:33 | WARNING  |  * Debugger is active!
+2026-06-09 11:25:33 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 11:25:47 | INFO     | === /solve request 20260609_112547_016297 | method=GET | ip=127.0.0.1 ===
+2026-06-09 11:25:47 | INFO     | Request 20260609_112547_016297 | GET demo problem
+2026-06-09 11:25:47 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:25:47 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 11:25:47 | INFO     | OSRM matrix received | 0.28s
+2026-06-09 11:25:47 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 11:25:47 | WARNING  | Solver found no solution | Check: enough trucks? zone conflicts? capacity?
+2026-06-09 11:25:47 | WARNING  | Request 20260609_112547_016297 | no solution | No solution found. Possible causes: not enough trucks for the total cargo, zone restrictions prevent some stops from being reached, or time windows are too tight.
+2026-06-09 11:25:47 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:25:47] "[31m[1mGET /solve HTTP/1.1[0m" 400 -
+2026-06-09 11:27:06 | INFO     |  * Detected change in 'C:\\Users\\amueed\\OneDrive - The Cary Company\\Desktop\\route\\google_route.py', reloading
+2026-06-09 11:27:06 | INFO     |  * Restarting with stat
+2026-06-09 11:27:07 | INFO     | ============================================================
+2026-06-09 11:27:07 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:27:07 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:27:07 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:27:07 | INFO     | ============================================================
+2026-06-09 11:27:07 | WARNING  |  * Debugger is active!
+2026-06-09 11:27:07 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 11:27:14 | INFO     | ============================================================
+2026-06-09 11:27:14 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:27:14 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:27:14 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:27:14 | INFO     | ============================================================
+2026-06-09 11:27:14 | INFO     | [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-06-09 11:27:14 | INFO     | [33mPress CTRL+C to quit[0m
+2026-06-09 11:27:14 | INFO     |  * Restarting with stat
+2026-06-09 11:27:14 | INFO     | ============================================================
+2026-06-09 11:27:14 | INFO     | VRP Route Optimizer starting
+2026-06-09 11:27:14 | INFO     | Audit log: logs/vrp_audit.log
+2026-06-09 11:27:14 | INFO     | Frontend:  http://localhost:5000
+2026-06-09 11:27:14 | INFO     | ============================================================
+2026-06-09 11:27:14 | WARNING  |  * Debugger is active!
+2026-06-09 11:27:14 | INFO     |  * Debugger PIN: 279-355-421
+2026-06-09 11:27:22 | INFO     | === /solve request 20260609_112722_404467 | method=GET | ip=127.0.0.1 ===
+2026-06-09 11:27:22 | INFO     | Request 20260609_112722_404467 | GET demo problem
+2026-06-09 11:27:22 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:27:22 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 11:27:22 | INFO     | OSRM matrix received | 0.26s
+2026-06-09 11:27:22 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 11:27:42 | INFO     | Solver finished | 20.27s | objective=72.726 miles
+2026-06-09 11:27:42 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 11:27:42 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 11:27:42 | INFO     | Request 20260609_112722_404467 | success | 1 routes | 72.726 miles
+2026-06-09 11:27:42 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:27:42] "GET /solve HTTP/1.1" 200 -
+2026-06-09 11:27:46 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:27:46] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 11:27:47 | INFO     | === /solve request 20260609_112747_194043 | method=POST | ip=127.0.0.1 ===
+2026-06-09 11:27:47 | INFO     | Request 20260609_112747_194043 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 11:27:47 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 11:27:47 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 11:27:47 | INFO     | OSRM matrix received | 0.25s
+2026-06-09 11:27:47 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 11:28:07 | INFO     | Solver finished | 20.27s | objective=76.009 miles
+2026-06-09 11:28:07 | INFO     |   Truck-2 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 11:28:07 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 11:28:07 | INFO     | Request 20260609_112747_194043 | success | 1 routes | 76.009 miles
+2026-06-09 11:28:07 | INFO     | 127.0.0.1 - - [09/Jun/2026 11:28:07] "POST /solve HTTP/1.1" 200 -
+2026-06-09 12:05:05 | INFO     | === /solve request 20260609_120505_428055 | method=GET | ip=127.0.0.1 ===
+2026-06-09 12:05:05 | INFO     | Request 20260609_120505_428055 | GET demo problem
+2026-06-09 12:05:05 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 12:05:05 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 12:05:05 | INFO     | OSRM matrix received | 0.31s
+2026-06-09 12:05:05 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 12:05:25 | INFO     | Solver finished | 20.32s | objective=72.726 miles
+2026-06-09 12:05:25 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 12:05:25 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 12:05:25 | INFO     | Request 20260609_120505_428055 | success | 1 routes | 72.726 miles
+2026-06-09 12:05:25 | INFO     | 127.0.0.1 - - [09/Jun/2026 12:05:25] "GET /solve HTTP/1.1" 200 -
+2026-06-09 12:09:06 | INFO     | === /solve request 20260609_120906_165979 | method=GET | ip=127.0.0.1 ===
+2026-06-09 12:09:06 | INFO     | Request 20260609_120906_165979 | GET demo problem
+2026-06-09 12:09:06 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 12:09:06 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 12:09:06 | INFO     | OSRM matrix received | 0.24s
+2026-06-09 12:09:06 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 12:09:26 | INFO     | Solver finished | 20.26s | objective=72.726 miles
+2026-06-09 12:09:26 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 12:09:26 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 12:09:26 | INFO     | Request 20260609_120906_165979 | success | 1 routes | 72.726 miles
+2026-06-09 12:09:26 | INFO     | 127.0.0.1 - - [09/Jun/2026 12:09:26] "GET /solve HTTP/1.1" 200 -
+2026-06-09 12:09:39 | INFO     | 127.0.0.1 - - [09/Jun/2026 12:09:39] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 12:09:40 | INFO     | === /solve request 20260609_120940_180231 | method=POST | ip=127.0.0.1 ===
+2026-06-09 12:09:40 | INFO     | Request 20260609_120940_180231 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 12:09:40 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 12:09:40 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 12:09:40 | INFO     | OSRM matrix received | 0.24s
+2026-06-09 12:09:40 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 12:10:00 | INFO     | Solver finished | 20.25s | objective=76.009 miles
+2026-06-09 12:10:00 | INFO     |   Truck-2 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 12:10:00 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 12:10:00 | INFO     | Request 20260609_120940_180231 | success | 1 routes | 76.009 miles
+2026-06-09 12:10:00 | INFO     | 127.0.0.1 - - [09/Jun/2026 12:10:00] "POST /solve HTTP/1.1" 200 -
+2026-06-09 13:22:43 | INFO     | === /solve request 20260609_132243_769913 | method=GET | ip=127.0.0.1 ===
+2026-06-09 13:22:43 | INFO     | Request 20260609_132243_769913 | GET demo problem
+2026-06-09 13:22:43 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 13:22:43 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 13:22:44 | INFO     | OSRM matrix received | 0.26s
+2026-06-09 13:22:44 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 13:23:04 | INFO     | Solver finished | 20.26s | objective=72.726 miles
+2026-06-09 13:23:04 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 13:23:04 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 13:23:04 | INFO     | Request 20260609_132243_769913 | success | 1 routes | 72.726 miles
+2026-06-09 13:23:04 | INFO     | 127.0.0.1 - - [09/Jun/2026 13:23:04] "GET /solve HTTP/1.1" 200 -
+2026-06-09 13:50:32 | INFO     | === /solve request 20260609_135032_732620 | method=GET | ip=127.0.0.1 ===
+2026-06-09 13:50:32 | INFO     | Request 20260609_135032_732620 | GET demo problem
+2026-06-09 13:50:32 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 13:50:32 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-88.0126,41.9314;-87.9073,41.9742;-87.6359,41.8789;-87.6086,41.8917;-88.0834,42.0334
+2026-06-09 13:50:33 | INFO     | OSRM matrix received | 0.36s
+2026-06-09 13:50:33 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 13:50:46 | INFO     | 127.0.0.1 - - [09/Jun/2026 13:50:46] "OPTIONS /solve HTTP/1.1" 200 -
+2026-06-09 13:50:46 | INFO     | === /solve request 20260609_135046_528466 | method=POST | ip=127.0.0.1 ===
+2026-06-09 13:50:46 | INFO     | Request 20260609_135046_528466 | depot='Addison, IL' | 2 deliveries | 2 pickups | 3 trucks
+2026-06-09 13:50:46 | INFO     | Solver starting | 5 locations | 3 vehicles | 2 deliveries | 2 pickups
+2026-06-09 13:50:46 | INFO     | OSRM matrix request | 5 locations | url=http://router.project-osrm.org/table/v1/driving/-87.9889556,41.931696;-87.9082027,41.9782496;-87.6359612,41.878738;-87.6041447,41.8917999;-88.083406,42.0333608
+2026-06-09 13:50:47 | INFO     | OSRM matrix received | 0.38s
+2026-06-09 13:50:47 | INFO     | Running OR-Tools solver (time limit: 20s)...
+2026-06-09 13:50:53 | INFO     | Solver finished | 20.36s | objective=72.726 miles
+2026-06-09 13:50:53 | INFO     |   Truck-1 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 13:50:53 | INFO     | Solution: 1 trucks used | 72.726 total miles
+2026-06-09 13:50:53 | INFO     | Request 20260609_135032_732620 | success | 1 routes | 72.726 miles
+2026-06-09 13:50:53 | INFO     | 127.0.0.1 - - [09/Jun/2026 13:50:53] "GET /solve HTTP/1.1" 200 -
+2026-06-09 13:51:07 | INFO     | Solver finished | 20.45s | objective=76.009 miles
+2026-06-09 13:51:07 | INFO     |   Truck-2 (53ft) | departs 18.0 units | picks up 18.0 units | 4 stops
+2026-06-09 13:51:07 | INFO     | Solution: 1 trucks used | 76.009 total miles
+2026-06-09 13:51:07 | INFO     | Request 20260609_135046_528466 | success | 1 routes | 76.009 miles
+2026-06-09 13:51:07 | INFO     | 127.0.0.1 - - [09/Jun/2026 13:51:07] "POST /solve HTTP/1.1" 200 -
